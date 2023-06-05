@@ -35,5 +35,12 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/welcome', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
     Route::get('/product/create', [App\Http\Controllers\HomeController::class, 'create'])->name('create');
     Route::post('/product/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store');
+    Route::post('/product/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('update');
+    Route::post('/product/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('delete');
+    Route::post('/product/edit/{id}', [App\Http\Controllers\ProductController::class, 'edit'])->name('edit');
+
     Route::get('/products', [\App\Http\Controllers\HomeController::class, 'products'])->name('admin.products');
+    Route::get('/products/edit/{id}', [\App\Http\Controllers\HomeController::class, 'edit'])->name('admin.edit');
+
+    Route::get('/reports', [\App\Http\Controllers\HomeController::class, 'reports'])->name('admin.reports');
 });

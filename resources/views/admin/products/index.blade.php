@@ -16,19 +16,21 @@
                     <thead>
                     <tr>
                         <th scope="col">Thumbnail</th>
+                        <th scope="col">On Sale</th>
                         <th scope="col">Name</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col" colspan=""></th>
+                        <th scope="col" colspan="2"></th>
 
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($products as $product)
                     <tr>
-                        <form action="/product/update/{{ $product->id }}" method="POST">
+                        <form action="{{ route('update', $product->id) }}" method="POST">
                             @csrf
                         <th scope="row">1</th>
+                        <td>{{ $product->on_sale }}</td>
                         <td>{{ $product->name }}</td>
                         <td>
                             <input class="form-control text-center" type="text" name="price" value="{{ $product->price }}">
@@ -40,13 +42,16 @@
                         <div class="row d-flex justify-content-end">
                             <button type="submit" class="btn btn-outline-info col-md-2 me-2">Update</button>
 
-                            <button type="submit" class="btn btn-outline-warning col-md-2 me-2">Edit</button>
-                            <form action="">
-                                <button type="submit" class="btn btn-outline-danger col-md-2">Remove</button>
-                            </form>
+                            <a href="{{ route('admin.edit', $product->id) }}" class="btn btn-outline-warning col-md-2 me-2">Edit</a>
                         </div>
                         </td>
                         </form>
+                        <td>
+                            <form action="{{ route('delete', $product->id) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-outline-danger col-md-12">Remove</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                     </tbody>

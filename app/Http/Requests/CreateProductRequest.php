@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateProductRequest extends FormRequest
 {
+
+    protected $messages = [
+    'name.min' => 'We need to know your email address!',
+    ];
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -14,6 +18,8 @@ class CreateProductRequest extends FormRequest
     {
         return Auth::user()->role === 'admin';
     }
+
+
 
     /**
      * Get the validation rules that apply to the request.

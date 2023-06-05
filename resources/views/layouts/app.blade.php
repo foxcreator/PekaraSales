@@ -21,7 +21,9 @@
 
 <nav class="navbar navbar-expand-lg bg-warning-subtle position-fixed z-1 w-100">
     <div class="container">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="{{ route('home') }}">
+            <img class="img-fluid" src="/assets/img/PekaraLogo_1.png" alt="Slovenska Pekara" style="max-height: 40px">
+        </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,9 +40,56 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.products') }}">Продукты</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Отчеты(в разработке)</a>
-                </li>
+
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Отчеты
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end bg-warning-subtle" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin.reports') }}">
+                              Дневной отчет
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Продажи за {{ \Carbon\Carbon::yesterday()->format('d-m-Y') }}(в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                              Месячный отчет(в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                              Отчет списания(в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                              Отчет о продажах сотрудников(в разработке)
+                            </a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item ">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle disabled" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Расходы (в разработке)
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end bg-warning-subtle" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('admin.reports') }}">
+                                Дневной отчет
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Месячный отчет(в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Отчет списания(в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Отчет о продажах сотрудников(в разработке)
+                            </a><a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Закупки (в разработке)
+                            </a>
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Продажи за {{ \Carbon\Carbon::yesterday()->format('d-m-Y') }}(в разработке)
+                            </a>
+                        </div>
+                    </li>
                 @endif
             </ul>
             @endauth
