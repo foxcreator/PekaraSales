@@ -50,8 +50,8 @@
                             <a class="dropdown-item" href="{{ route('admin.reports') }}">
                               Дневной отчет
                             </a>
-                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Продажи за {{ \Carbon\Carbon::yesterday()->format('d-m-Y') }}(в разработке)
+                            <a class="dropdown-item" href="{{ route('admin.reports.yesterday') }}">
+                                Продажи за {{ \Carbon\Carbon::yesterday()->format('d-m-Y') }}
                             </a>
                             <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
                               Месячный отчет(в разработке)
@@ -65,29 +65,37 @@
 
                         </div>
                     </li>
-                    <li class="nav-item ">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle disabled" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            Расходы (в разработке)
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Расходы
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end bg-warning-subtle" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('admin.reports') }}">
-                                Дневной отчет
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Зарплата (в разработке)
                             </a>
                             <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Месячный отчет(в разработке)
+                                Другие расходы (в разработке)
+                            </a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            Склад
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-end bg-warning-subtle" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
+                                Остатки (в разработке)
                             </a>
                             <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Отчет списания(в разработке)
+                                Поставки (в разработке)
                             </a>
                             <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Отчет о продажах сотрудников(в разработке)
-                            </a><a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Закупки (в разработке)
+                                Списание (в разработке)
                             </a>
-                            <a class="dropdown-item disabled" href="{{ route('admin.reports') }}">
-                                Продажи за {{ \Carbon\Carbon::yesterday()->format('d-m-Y') }}(в разработке)
-                            </a>
+
                         </div>
                     </li>
                 @endif

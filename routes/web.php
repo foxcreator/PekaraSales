@@ -42,5 +42,6 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/products', [\App\Http\Controllers\HomeController::class, 'products'])->name('admin.products');
     Route::get('/products/edit/{id}', [\App\Http\Controllers\HomeController::class, 'edit'])->name('admin.edit');
 
-    Route::get('/reports', [\App\Http\Controllers\HomeController::class, 'reports'])->name('admin.reports');
+    Route::get('/reports', [\App\Http\Controllers\HomeController::class, 'todayReport'])->name('admin.reports');
+    Route::get('/reports/yesterday', [\App\Http\Controllers\HomeController::class, 'yesterdayReport'])->name('admin.reports.yesterday');
 });

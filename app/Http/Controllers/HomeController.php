@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Product;
+use App\Services\ReportsServise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -15,8 +16,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(ReportsServise $reportsServise)
     {
+        $this->reportService = $reportsServise;
         $this->middleware('auth');
     }
 
@@ -59,20 +61,26 @@ class HomeController extends Controller
         return view('admin.products.edit', compact('product'));
     }
 
-    public function reports()
+    public function todayReport()
     {
         $today = Carbon::today();
+        $reportData = $this->reportService->dailyReports($today);
 
-        $productsSold = Cart::join('products', 'carts.product_id', '=', 'products.id')
-            ->whereDate('carts.created_at', $today)
-            ->groupBy('carts.product_id')
-            ->select('products.name', 'products.price', DB::raw('SUM(carts.quantity) as total_sold'))
-            ->get();
-        $totalSales = Cart::join('products', 'carts.product_id', '=', 'products.id')
-            ->whereDate('carts.created_at', $today)
-            ->sum(DB::raw('products.price * carts.quantity'));
+        $productsSold = $reportData['productsSold'];
+        $totalSales = $reportData['totalSales'];
 
         return view('admin.reports.index', compact('productsSold', 'totalSales'));
+    }
+
+    public function yesterdayReport()
+    {
+        $yesterday = Carbon::yesterday();
+        $reportData = $this->reportService->dailyReports($yesterday);
+
+        $productsSold = $reportData['productsSold'];
+        $totalSales = $reportData['totalSales'];
+
+        return view('admin.reports.yesterday', compact('productsSold', 'totalSales'));
     }
 
 }

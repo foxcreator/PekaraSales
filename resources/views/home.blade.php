@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header text-center">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -26,7 +26,6 @@
                         @endif
                         @foreach($products as $product)
 
-{{--                            @dd($product->on_sale)--}}
                             @if($product->on_sale != 0)
                                 <div class="card col-md-3 me-3 mb-3" style="width: 18rem;">
                                     <img src="assets/img/PekaraLogo_1.png" class="card-img-top" alt="...">
@@ -43,8 +42,8 @@
                                                     <input type="hidden" name="name" value="{{ $product->name }}">
                                                     <input type="hidden" name="price" value="{{ $product->price }}">
                                                     @if($product->quantity > 0)
-                                                    <input type="number" class="col-md-2" name="quantity" value="1" min="1" max="{{ $product->quantity }}"> <!-- Поле для выбора количества продукта -->
-                                                    <button class="btn btn-info col-md-4" type="submit">В чек</button>
+                                                    <input type="number" class="col-md-3" name="quantity" value="1" min="1" max="{{ $product->quantity }}"> <!-- Поле для выбора количества продукта -->
+                                                    <button class="btn btn-info col-md-8" type="submit">В чек</button>
                                                     @endif
                                                 </form>
                                         </div>
