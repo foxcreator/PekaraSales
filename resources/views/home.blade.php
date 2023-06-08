@@ -28,7 +28,7 @@
 
                             @if($product->on_sale != 0)
                                 <div class="card col-md-3 me-3 mb-3" style="width: 18rem;">
-                                    <img src="assets/img/PekaraLogo_1.png" class="card-img-top" alt="...">
+                                    <img src="{{ $product->thumbnailUrl }}" style="max-height: 250px" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h4 class="card-title">{{ $product->name }}</h4>
                                         <ul class="list-group list-group-flush">

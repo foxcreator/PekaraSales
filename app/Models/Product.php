@@ -16,7 +16,8 @@ class Product extends Model
       'name',
       'description',
       'price',
-      'quantity'
+      'quantity',
+        'thumbnail'
     ];
 
     public function carts()
@@ -49,7 +50,6 @@ class Product extends Model
             FileStorageService::remove($this->attributes['thumbnail']);
         }
 
-//        $this->attributes['thumbnail'] = is_string($image) ? $image : FileStorageService::upload($image);
 
         $this->attributes['thumbnail'] = FileStorageService::upload($image);
     }

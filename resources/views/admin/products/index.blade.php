@@ -29,7 +29,9 @@
                     <tr>
                         <form action="{{ route('update', $product->id) }}" method="POST">
                             @csrf
-                        <th scope="row">1</th>
+                        <th scope="row">
+                            <img class="img-thumbnail" style="width: 60px; height: 60px"  src="{{ $product->thumbnailUrl }}" alt="..." >
+                        </th>
                         <td>{{ $product->on_sale }}</td>
                         <td>{{ $product->name }}</td>
                         <td>

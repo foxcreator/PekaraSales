@@ -17,7 +17,7 @@ class FileStorageService implements FileStorageServiceContract
             return str_replace('public/storage', '', $file);
         }
 
-        $filePath = '/public/' . Str::random() . '_' . date('Y-m-d_h:m:s') . '.' . $file->getClientOriginalExtension();
+        $filePath = 'public/' . Str::random() . '_' . date('Y-m-d_h:m:s') . '.' . $file->getClientOriginalExtension();
 
         Storage::put($filePath, File::get($file));
 
@@ -27,6 +27,6 @@ class FileStorageService implements FileStorageServiceContract
 
     public static function remove(string $file)
     {
-        // TODO: Implement remove() method.
+        Storage::delete($file);
     }
 }

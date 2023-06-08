@@ -36,7 +36,7 @@ class HomeController extends Controller
         if ($search) {
             $products = Product::where('name', 'LIKE', '%' . $search . '%')->paginate(8);
         } else {
-            $products = Product::where('on_sale', 1)->paginate(10);
+            $products = Product::where('on_sale', 1)->paginate(8);
         }
 
 
@@ -81,6 +81,28 @@ class HomeController extends Controller
         $totalSales = $reportData['totalSales'];
 
         return view('admin.reports.yesterday', compact('productsSold', 'totalSales'));
+    }
+
+    public function monthlyReport(Request $request)
+    {
+        return view('admin.reports.monthly');
+    }
+
+    public function calcMonthlyReport(Request $request)
+    {
+        $dates = $request->all();
+        if (empty($dates)) {
+            $dates = [
+                'ondate' => Carbon::now()->startOfMonth()->format('Y-m-d'),
+                'todate' => Carbon::today()->format('Y-m-d')
+            ];
+        }
+
+        $reportData = $this->reportService->Reports($dates['ondate'], $dates['todate']);
+        $productsSold = $reportData['productsSold'];
+        $totalSales = $reportData['totalSales'];
+
+        return view('admin.reports.monthly', compact('productsSold', 'totalSales', 'dates'));
     }
 
 }
