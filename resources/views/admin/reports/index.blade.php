@@ -31,7 +31,7 @@
                                     <td>{{ $product->total_sold }}</td>
                                     <td>{{ $product->total_sold * $product->price}}€</td>
                                 @endforeach
-                                <td rowspan="{{ count($productsSold) }}"><h2>{{ $totalSales }}€</h2></td>
+                                <td rowspan="{{ count($productsSold) }}"><h2 class="text-success">{{ $totalSales }}€</h2></td>
                             </tr>
                         </tbody>
                     </table>

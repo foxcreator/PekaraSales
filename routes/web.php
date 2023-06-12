@@ -46,4 +46,10 @@ Route::group(['middleware' => 'role:admin'], function () {
     Route::get('/reports/yesterday', [\App\Http\Controllers\HomeController::class, 'yesterdayReport'])->name('admin.reports.yesterday');
 //    Route::get('/reports/monthly', [\App\Http\Controllers\HomeController::class, 'monthlyReport'])->name('admin.reports.monthly');
     Route::get('/reports/monthly', [\App\Http\Controllers\HomeController::class, 'calcMonthlyReport'])->name('admin.reports.calcmonthly');
+
+
+    Route::get('/stock', [\App\Http\Controllers\StockController::class, 'index'])->name('admin.stock');
+    Route::get('/stock/create', [\App\Http\Controllers\StockController::class, 'create'])->name('admin.stock.create');
+    Route::post('/stock/store', [\App\Http\Controllers\StockController::class, 'store'])->name('admin.stock.store');
+    Route::post('/stock/delete/{id}', [\App\Http\Controllers\StockController::class, 'delete'])->name('admin.stock.delete');
 });
